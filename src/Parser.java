@@ -57,4 +57,61 @@ public class Parser {
 	}
 
     }
+
+	public boolean hasMoreCommands(){
+		return (index < commands.size());
+	}
+
+	public void advance(){
+		if (hasMoreCommands()){index++;}
+	}
+
+	public CommandType commandType(){
+		String currentCommand = commands.get(index);
+		if (currentCommand.startsWith(")")) { return CommandType.L_COMMAND; }
+		if (currentCommand.startsWith("@")){ return CommandType.A_COMMAND; }
+		else { return CommandType.C_COMMAND; }
+	}
+
+	public String symbol(){
+		String sym = commands.get(index);
+		sym = sym.replace("@","").replace("(","").replace(")","");
+		return sym;
+	}
+
+	public String dest(){
+		String currentCommand = commands.get(index);
+		if (currentCommand.contains("=")){
+			int eq = currentCommand.indexOf("=");
+			return currentCommand.substring(0,eq);
+		}
+		else if (currentCommand.contains(";")){
+			int semi = currentCommand.indexOf(";");
+			return currentCommand.substring(0,semi);
+		}
+		else {return "";}
+	}
+
+	public String comp() {
+		String currentCommand = commands.get(index);
+		if (currentCommand.contains(";") && currentCommand.contains("=")) {
+			int semi = currentCommand.indexOf(";");
+			int eq = currentCommand.indexOf("=");
+			return currentCommand.substring(eq, semi);
+		}
+		else if (currentCommand.contains(";")){
+			int semi = currentCommand.indexOf(";");
+			return currentCommand.substring(0, semi);
+		}
+		else {return currentCommand;}
+	}
+
+	public String jump() {
+		String currentCommand = commands.get(index);
+		if (currentCommand.contains(";")){
+			int semi = currentCommand.indexOf(";");
+			return currentCommand.substring(semi);
+		}
+		else {return "";}
+	}
 }

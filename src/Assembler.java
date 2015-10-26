@@ -47,7 +47,7 @@ public class Assembler {
 		//SymbolTable symbolTable = new SymbolTable();	
 		Parser parser = new Parser(asmFile);
 		// Un-comment the following once you have a Code class.
-		//Code code = new Code();
+		Code code = new Code();
 		// Output file
 		FileWriter hackFile;
 		// Memory location of next variable

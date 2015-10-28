@@ -24,7 +24,7 @@ public class SymbolTable {
     }
 
     public Boolean contains(String sym){
-        return symTable.contains(sym);
+        return symTable.containsKey(sym);
     }
 
     public int GetAddress(String sym){

@@ -77,25 +77,25 @@ public class Assembler {
                     binary = "111" + code.comp(parser.comp());
                     binary += code.dest(parser.dest());
                     binary += code.jump(parser.jump());
-                }
-                else if (parser.commandType() == CommandType.A_COMMAND){
+                } else if (parser.commandType() == CommandType.A_COMMAND) {
                     String sym = parser.symbol();
+                    binary = "0";
                     if (Character.isDigit(sym.charAt(0))) {
-                        binary = toImmediate(Integer.parseInt(sym));
-                    }
-                    else {
-                        if (symbolTable.contains(sym)){
-                            binary = toImmediate(symbolTable.GetAddress(sym));
-                        }
-                        else {
-                            symbolTable.addEntry(sym,nextVariableLoc);
-                            binary = toImmediate(nextVariableLoc);
+                        binary += toImmediate(Integer.parseInt(sym));
+                    } else {
+                        if (symbolTable.contains(sym)) {
+                            binary += toImmediate(symbolTable.GetAddress(sym));
+                        } else {
+                            symbolTable.addEntry(sym, nextVariableLoc);
+                            binary += toImmediate(nextVariableLoc);
                             nextVariableLoc++;
                         }
                     }
                 }
                 if (binary != null) {
+                    System.out.println(binary);
                     hackFile.write(binary);
+                    hackFile.append('\n');
                 }
                 parser.advance();
             }

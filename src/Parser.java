@@ -22,7 +22,7 @@ public class Parser {
 
     // Reset the parser.  Used prior to the second pass.    
     public void reset() {
-	index = -1;
+	index = 0;
     }
 
     // Fill the commands list with assembly commands.    
@@ -85,10 +85,6 @@ public class Parser {
 			int eq = currentCommand.indexOf("=");
 			return currentCommand.substring(0,eq);
 		}
-		else if (currentCommand.contains(";")){
-			int semi = currentCommand.indexOf(";");
-			return currentCommand.substring(0,semi);
-		}
 		else {return "";}
 	}
 
@@ -103,6 +99,10 @@ public class Parser {
 			int semi = currentCommand.indexOf(";");
 			return currentCommand.substring(0, semi);
 		}
+		else if (currentCommand.contains("=")){
+			int eq = currentCommand.indexOf("=");
+			return currentCommand.substring(eq+1);
+		}
 		else {return currentCommand;}
 	}
 
@@ -110,7 +110,7 @@ public class Parser {
 		String currentCommand = commands.get(index);
 		if (currentCommand.contains(";")){
 			int semi = currentCommand.indexOf(";");
-			return currentCommand.substring(semi);
+			return currentCommand.substring(semi+1);
 		}
 		else {return "";}
 	}

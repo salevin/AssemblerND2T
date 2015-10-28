@@ -68,7 +68,7 @@ public class Parser {
 
 	public CommandType commandType(){
 		String currentCommand = commands.get(index);
-		if (currentCommand.startsWith(")")) { return CommandType.L_COMMAND; }
+		if (currentCommand.startsWith("(")) { return CommandType.L_COMMAND; }
 		if (currentCommand.startsWith("@")){ return CommandType.A_COMMAND; }
 		else { return CommandType.C_COMMAND; }
 	}

@@ -28,6 +28,7 @@ public class Assembler {
                 JFileChooser fc = new JFileChooser();
                 // Only allow the selection of files with an extension of .asm.
                 fc.setFileFilter(new FileNameExtensionFilter("ASM files", "asm"));
+		fc.setCurrentDirectory(new java.io.File("."));
                 // Uncomment the following to allow the selection of files and
                 // directories.  The default behavior is to allow only the selection
                 // of files.
